@@ -7,6 +7,9 @@ import org.openqa.selenium.io.FileHandler;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Helper {
 
@@ -15,7 +18,7 @@ public class Helper {
 
         File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         try {
-            FileHandler.copy(src, new File("./screenShorts/Login.png"));
+            FileHandler.copy(src, new File("./screenShorts/SS: "+ getCurrentDateTime() + ".png"));
         }
         catch (IOException e){
             System.out.println("Unable to capture screenshot "+ e.getMessage());
@@ -24,7 +27,11 @@ public class Helper {
     }
 
 
-    public void getCurrentDateTime(){
+    public String getCurrentDateTime(){
+
+        DateFormat customForm = new SimpleDateFormat("MM_dd_yyyy_HH_mm_ss");
+        Date currentDate = new Date();
+        return customForm.format(currentDate);
 
     }
 
